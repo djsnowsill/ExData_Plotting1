@@ -1,8 +1,12 @@
-# If Raw Data File Archive does not exist then download it
-if( !file.exists("dataset.zip"))
-{
-  download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", "dataset.zip", method="curl")  
-}
+source("load_data_set.R")
 
-# Download and unzip dataset.zip from Web
-unzip("dataset.zip")
+smalldataset <- load_data_set()
+
+# Open Graphical Device as PNG
+png(filename = "plot1.png", width = 480, height = 480, units = "px", bg = "transparent")
+
+# Create Historgram outputting to PNG
+hist(smalldataset$Global_active_power, main = "Global Active Power", xlab = "Global Active Power (kilowatts)", col = "red")
+
+# Close Graphical device
+dev.off()
