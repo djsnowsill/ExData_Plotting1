@@ -23,6 +23,10 @@ for(col in c(3:9)) {
 # Extract data for 2007-02-01 and 2007-02-02
 smalldataset = subset(fulldataset, Date >= "2007-02-01" & Date <= "2007-02-02")
 
+# Append DateTime to DataSet
+smalldataset$DateTime <- paste(smalldataset$Date, smalldataset$Time)
+smalldataset$DateTime <- strptime(smalldataset$DateTime, format = "%Y-%m-%d %H:%M:%S")
+
 return(smalldataset)
 
 }
